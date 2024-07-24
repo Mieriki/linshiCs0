@@ -29,4 +29,4 @@ springdoc:
     enabled: true
     path: /api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /swagger-ui.html # localhost:8000/mugen/api/swagger-ui.html
