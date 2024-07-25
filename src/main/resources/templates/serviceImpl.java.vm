@@ -41,6 +41,14 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     }
 
     @Override
+        public String saveHandler(List<${entity}> ${entity.toLowerCase()}List) {
+        if (this.saveBatch(${entity.toLowerCase()}List))
+            return null;
+        else
+          return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
+    }
+
+    @Override
     public String modifyHandler(${entity} ${entity.toLowerCase()}) {
         if (this.updateById(${entity.toLowerCase()}))
             return null;

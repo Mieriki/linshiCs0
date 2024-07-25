@@ -11,10 +11,11 @@ import java.util.List;
  * </p>
  *
  * @author Mieriki
- * @since 2024-07-24
+ * @since 2024-07-25
  */
 public interface AdminService extends IService<Admin> {
     String saveHandler(Admin admin);
+    String saveHandler(List<Admin> adminList);
     String modifyHandler(Admin admin);
     String removeHandler(Integer id);
     String removeHandler(List<Integer> idList);

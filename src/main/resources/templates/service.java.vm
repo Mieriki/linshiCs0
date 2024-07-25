@@ -18,6 +18,7 @@ interface ${table.serviceName} : ${superServiceClass}<${entity}>
 #else
 public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
     String saveHandler(${entity} ${entity.toLowerCase()});
+    String saveHandler(List<${entity}> ${entity.toLowerCase()}List);
     String modifyHandler(${entity} ${entity.toLowerCase()});
     String removeHandler(Integer id);
     String removeHandler(List<Integer> idList);

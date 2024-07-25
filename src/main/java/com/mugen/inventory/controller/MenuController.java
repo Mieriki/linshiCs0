@@ -34,7 +34,7 @@ public class MenuController {
     }
 
     @GetMapping("/get/{id}")
-    public <T>RestBean<Menu> get(@PathVariable Integer id) {
+    public <T>RestBean<Menu> query(@PathVariable Integer id) {
         return RestBean.success(service.getById(id));
     }
 
@@ -49,13 +49,18 @@ public class MenuController {
     }
 
     @GetMapping("/delete/{id}")
-    public <T>RestBean<Void> delete(@PathVariable Integer id) {
+    public <T>RestBean<Void> remove(@PathVariable Integer id) {
         return RestBean.messageHandle(id, service::removeHandler);
     }
 
     @PostMapping("/delete")
-    public <T>RestBean<Void> delete(@RequestBody List<Integer> idList) {
+    public <T>RestBean<Void> remove(@RequestBody List<Integer> idList) {
         return RestBean.messageHandle(idList, service::removeHandler);
+    }
+
+    @GetMapping("/get/count")
+    public <T>RestBean<Long> count() {
+        return RestBean.success(service.count());
     }
 
     @GetMapping("/get/router/{id}")

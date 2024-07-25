@@ -17,7 +17,7 @@ import java.util.List;
  * </p>
  *
  * @author Mieriki
- * @since 2024-07-24
+ * @since 2024-07-25
  */
 @Service
 @Transactional
@@ -31,6 +31,14 @@ public class AdminServiceImp extends ServiceImpl<AdminMapper, Admin> implements 
             return null;
         else
             return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
+    }
+
+    @Override
+        public String saveHandler(List<Admin> adminList) {
+        if (this.saveBatch(adminList))
+            return null;
+        else
+          return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
     }
 
     @Override

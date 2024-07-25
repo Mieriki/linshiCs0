@@ -1,7 +1,8 @@
 package com.mugen.inventory.service.impl;
 
 import com.mugen.inventory.entity.Customer;
-import com.mugen.inventory.entity.model.vo.request.CustomerQueryVo;
+import com.mugen.inventory.entity.model.vo.request.CustomerPageVo;
+import com.mugen.inventory.entity.model.vo.response.CustomerQueryPageVo;
 import com.mugen.inventory.mapper.CustomerMapper;
 import com.mugen.inventory.service.CustomerService;
 import com.mugen.inventory.utils.constant.InventoryMessageConstant;
@@ -35,6 +36,14 @@ public class CustomerServiceImp extends ServiceImpl<CustomerMapper, Customer> im
     }
 
     @Override
+    public String saveHandler(List<Customer> customerList) {
+        if (this.saveBatch(customerList))
+            return null;
+        else
+            return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
+    }
+
+    @Override
     public String modifyHandler(Customer customer) {
         if (this.updateById(customer))
             return null;
@@ -59,7 +68,8 @@ public class CustomerServiceImp extends ServiceImpl<CustomerMapper, Customer> im
     }
 
     @Override
-    public List<Customer> queryPage(CustomerQueryVo vo) {
-        return mapper.selectCustomersLikeName(vo.setCurrentPage((vo.getCurrentPage() - 1) * vo.getPageSize()));
+    public CustomerQueryPageVo queryPage(CustomerPageVo vo) {
+        vo.setCurrentPage((vo.getCurrentPage() - 1) * vo.getPageSize());
+        return new CustomerQueryPageVo(mapper.selectCountLikeName(vo), mapper.selectPageListLikeName(vo));
     }
 }

@@ -33,11 +33,4 @@ public class ValidationController {
         log.warn("Resolved [{}: {}]", exception.getClass().getName(), exception.getMessage());
         return RestBean.failure("请求参数有误");
     }
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(Exception.class)
-    public RestBean<Void> handleException(Exception e) {
-        log.warn("Resolved [{}: {}]", e.getClass().getName(), e.getMessage());
-        return RestBean.failure("未知异常");
-    }
 }

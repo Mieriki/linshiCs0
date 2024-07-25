@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author Mieriki
- * @since 2024-07-24
+ * @since 2024-07-25
  */
 @Mapper
 public interface AdminMapper extends BaseMapper<Admin> {

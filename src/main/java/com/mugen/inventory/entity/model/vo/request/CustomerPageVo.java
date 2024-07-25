@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Builder(toBuilder = true)
-public class CustomerQueryVo {
+public class CustomerPageVo {
     String name;
     Integer currentPage;
     Integer pageSize;
