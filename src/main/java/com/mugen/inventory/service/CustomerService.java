@@ -2,8 +2,8 @@ package com.mugen.inventory.service;
 
 import com.mugen.inventory.entity.Customer;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.mugen.inventory.entity.model.vo.request.CustomerPageVo;
-import com.mugen.inventory.entity.model.vo.response.CustomerQueryPageVo;
+import com.mugen.inventory.entity.model.vo.request.CustomerQueryPageVo;
+import com.mugen.inventory.entity.model.vo.response.CustomerPageVo;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ public interface CustomerService extends IService<Customer> {
     String saveHandler(Customer customer);
     String saveHandler(List<Customer> customerList);
     String modifyHandler(Customer customer);
+    String modifyHandler(List<Customer> customerList);
     String removeHandler(Integer id);
     String removeHandler(List<Integer> idList);
-
-    CustomerQueryPageVo queryPage(CustomerPageVo vo);
+    CustomerPageVo queryPage(CustomerQueryPageVo vo);
 }

@@ -56,6 +56,13 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
             return InventoryMessageConstant.MODIFY_FAILURE_MESSAGE;
     }
 
+    @Override public String modifyHandler(List<${entity}> ${entity.toLowerCase()}List) {
+        if (this.updateBatchById(${entity.toLowerCase()}List))
+            return null;
+        else
+            return InventoryMessageConstant.MODIFY_FAILURE_MESSAGE;
+    }
+
     @Override
     public String removeHandler(Integer id) {
         if (this.removeById(id))

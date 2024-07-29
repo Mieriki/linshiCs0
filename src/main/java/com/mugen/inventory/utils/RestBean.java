@@ -113,6 +113,16 @@ public record RestBean<T>(int code, T data, String message) implements HttpMessa
         return new RestBean<>(OK, data, OK_MESSAGE);
     }
 
+    /**
+     * 成功的RestBean
+     * @param <T> 数据类型
+     * @param message 信息
+     * @return 成功的RestBean
+     */
+    public static <T> RestBean<T> success(String message) {
+        return new RestBean<>(OK, null, message);
+    }
+
 
     /**
      * 成功的RestBean
@@ -132,6 +142,17 @@ public record RestBean<T>(int code, T data, String message) implements HttpMessa
      */
     public static <T> RestBean<T> success(int code, T data) {
         return new RestBean<>(code, data, codeMessageMap.get(code));
+    }
+
+    /**
+     * 成功的RestBean
+     * @param <T> 数据类型
+     * @param data 数据
+     * @param message 信息
+     * @return 成功的RestBean
+     */
+    public static <T> RestBean<T> success(T data, String message) {
+        return new RestBean<>(OK, data, message);
     }
 
     /**

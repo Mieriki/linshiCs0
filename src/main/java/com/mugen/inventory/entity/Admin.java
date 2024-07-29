@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import java.io.Serializable;
 import java.io.Serial;
+
+import com.mugen.inventory.utils.BaseData;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -26,7 +28,7 @@ import lombok.experimental.Accessors;
 @Builder(toBuilder = true)
 @Accessors(chain = true)
 @TableName("t_admin")
-public class Admin implements Serializable {
+public class Admin implements Serializable, BaseData {
     @Serial
     private static final long serialVersionUID = 1L;
 

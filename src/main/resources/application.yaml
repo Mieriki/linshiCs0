@@ -10,6 +10,12 @@ spring:
     username: root
     password: Inaba
     driver-class-name: com.mysql.cj.jdbc.Driver
+  security:
+    filter:
+      order: -100
+    jwt:
+      key: ajiskyuxhjl
+      expire: 7
   web:
     cors:
       origin: http://localhost:3000, http://localhost:5173, http://localhost:4173

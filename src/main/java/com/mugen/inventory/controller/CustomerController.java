@@ -4,10 +4,9 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
 import cn.hutool.poi.excel.ExcelWriter;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import com.mugen.inventory.entity.Customer;
-import com.mugen.inventory.entity.model.vo.request.CustomerPageVo;
-import com.mugen.inventory.entity.model.vo.response.CustomerQueryPageVo;
+import com.mugen.inventory.entity.model.vo.request.CustomerQueryPageVo;
+import com.mugen.inventory.entity.model.vo.response.CustomerPageVo;
 import com.mugen.inventory.service.CustomerService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -44,6 +42,11 @@ public class CustomerController {
     @GetMapping("/get")
     public <T>RestBean<List> list(){
         return RestBean.success(service.list());
+    }
+
+    @PostMapping("/get")
+    public <T>RestBean<CustomerPageVo> queryPage(@RequestBody @Validated CustomerQueryPageVo vo) {
+        return RestBean.success(service.queryPage(vo));
     }
 
     @GetMapping("/get/{id}")
@@ -75,11 +78,6 @@ public class CustomerController {
     @GetMapping("/get/count")
     public <T>RestBean<Long> count() {
         return RestBean.success(service.count());
-    }
-
-    @PostMapping("/get")
-    public <T>RestBean<CustomerQueryPageVo> queryPage(@RequestBody @Validated CustomerPageVo vo) {
-        return RestBean.success(service.queryPage(vo));
     }
 
     @SneakyThrows

@@ -10,7 +10,7 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
-@Configuration
+//@Configuration
 public class WebCorsConfiguration {
     @Value("${spring.web.cors.origin}")
     List<String> origins;
@@ -31,8 +31,8 @@ public class WebCorsConfiguration {
     /**
      * 跨域配置
      */
-    @Bean
-    @Order(-200)
+//    @Bean
+//    @Order(-200)
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration corsConfiguration = new CorsConfiguration();

@@ -1,11 +1,8 @@
 package com.mugen.inventory.service.impl;
 
-import com.mugen.inventory.entity.Customer;
-import com.mugen.inventory.entity.model.vo.request.CustomerQueryPageVo;
-import com.mugen.inventory.entity.model.vo.response.CustomerPageVo;
-import com.mugen.inventory.mapper.CustomerMapper;
-import com.mugen.inventory.service.CustomerService;
-import com.mugen.inventory.utils.ParameterUtils;
+import com.mugen.inventory.entity.AdminRole;
+import com.mugen.inventory.mapper.AdminRoleMapper;
+import com.mugen.inventory.service.AdminRoleService;
 import com.mugen.inventory.utils.constant.InventoryMessageConstant;
 import jakarta.annotation.Resource;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -20,41 +17,40 @@ import java.util.List;
  * </p>
  *
  * @author Mieriki
- * @since 2024-07-25
+ * @since 2024-07-28
  */
 @Service
 @Transactional
-public class CustomerServiceImp extends ServiceImpl<CustomerMapper, Customer> implements CustomerService {
+public class AdminRoleServiceImp extends ServiceImpl<AdminRoleMapper, AdminRole> implements AdminRoleService {
     @Resource
-    private CustomerMapper mapper;
+    private AdminRoleMapper mapper;
 
     @Override
-    public String saveHandler(Customer customer) {
-        if (this.save(customer))
+    public String saveHandler(AdminRole adminrole) {
+        if (this.save(adminrole))
             return null;
         else
             return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
     }
 
     @Override
-    public String saveHandler(List<Customer> customerList) {
-        if (this.saveBatch(customerList))
+        public String saveHandler(List<AdminRole> adminroleList) {
+        if (this.saveBatch(adminroleList))
             return null;
         else
-            return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
+          return InventoryMessageConstant.SAVE_FAILURE_MESSAGE;
     }
 
     @Override
-    public String modifyHandler(Customer customer) {
-        if (this.updateById(customer))
+    public String modifyHandler(AdminRole adminrole) {
+        if (this.updateById(adminrole))
             return null;
         else
             return InventoryMessageConstant.MODIFY_FAILURE_MESSAGE;
     }
 
-    @Override
-    public String modifyHandler(List<Customer> customerList) {
-        if (this.updateBatchById(customerList))
+    @Override public String modifyHandler(List<AdminRole> adminroleList) {
+        if (this.updateBatchById(adminroleList))
             return null;
         else
             return InventoryMessageConstant.MODIFY_FAILURE_MESSAGE;
@@ -74,11 +70,5 @@ public class CustomerServiceImp extends ServiceImpl<CustomerMapper, Customer> im
             return null;
         else
             return InventoryMessageConstant.REMOVE_FAILURE_MESSAGE;
-    }
-
-    @Override
-    public CustomerPageVo queryPage(CustomerQueryPageVo vo) {
-        vo.setCurrentPage(ParameterUtils.getCurrentPage(vo.getCurrentPage(), vo.getPageSize()));
-        return new CustomerPageVo(mapper.selectCountLikeName(vo), mapper.selectPageLikeNameAndAddress(vo));
     }
 }

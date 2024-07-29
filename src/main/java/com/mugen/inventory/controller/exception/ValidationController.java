@@ -19,18 +19,18 @@ public class ValidationController {
 
     /**
      * 与SpringBoot保持一致，校验不通过打印警告信息，而不是直接抛出异常
-     * @param exception 验证异常
+     * @param e 验证异常
      * @return 校验结果
      */
     @ExceptionHandler(ConstraintViolationException.class)
-    public RestBean<Void> validateError(ConstraintViolationException exception) {
-        log.warn("Resolved [{}: {}]", exception.getClass().getName(), exception.getMessage());
+    public RestBean<Void> validateError(ConstraintViolationException e) {
+        log.warn("Resolved [{}: {}]", e.getClass().getName(), e.getMessage());
         return RestBean.failure("请求参数有误");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public RestBean<Void> bindateError(MethodArgumentNotValidException exception) {
-        log.warn("Resolved [{}: {}]", exception.getClass().getName(), exception.getMessage());
+    public RestBean<Void> bindateError(MethodArgumentNotValidException e) {
+        log.warn("Resolved [{}: {}]", e.getClass().getName(), e.getMessage());
         return RestBean.failure("请求参数有误");
     }
 }
